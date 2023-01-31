@@ -1,5 +1,5 @@
 import React from 'react';
-import '../components/Template.css';
+import './css/Template.css';
 
 const Template = ({ children, todoLength }) => {
   return (

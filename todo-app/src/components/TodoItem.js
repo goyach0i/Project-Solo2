@@ -1,13 +1,25 @@
 import React from 'react';
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md';
-import '../components/Todoitem.css';
+import './css/Todoitem.css';
 
-const Todoitem = ({ todo }) => {
+const Todoitem = ({ todo, onCheck }) => {
   const { id, text, checked } = todo;
   return (
     <div className="TodoItem">
       <div className={`content ${checked ? 'checked' : ''}`}>
-        {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+        {checked ? (
+          <MdCheckBox
+            onClick={() => {
+              onCheck(id);
+            }}
+          />
+        ) : (
+          <MdCheckBoxOutlineBlank
+            onClick={() => {
+              onCheck(id);
+            }}
+          />
+        )}
         <div className="text">{text}</div>
       </div>
     </div>
