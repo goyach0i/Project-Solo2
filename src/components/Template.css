@@ -1,0 +1,22 @@
+.Template {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  width: 90vw;
+  max-height: 100vh;
+  margin: 0 auto;
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #6c567b;
+}
