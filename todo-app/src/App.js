@@ -62,6 +62,15 @@ function App() {
     localStorage.clear();
     setTodos((todos) => todos.filter((todo) => todo.id !== id));
   };
+  // 수정
+  const onUpdate = (id, text) => {
+    onInsert();
+    setTodos((todos) =>
+      todos.map((todo) => (todo.id === id ? { ...todo, text } : todo)),
+    );
+    console.log(todos);
+    localStorage.setItem('todoList', text);
+  };
 
   return (
     <Template todoLength={todos.length}>
@@ -80,6 +89,7 @@ function App() {
           onInsert={onInsert}
           onInsertTodo={onInsertTodo}
           onRemove={onRemove}
+          onUpdate={onUpdate}
         />
       )}
     </Template>

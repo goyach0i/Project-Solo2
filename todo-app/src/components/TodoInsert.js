@@ -4,7 +4,13 @@ import './css/TodoInsert.css';
 import { errorAlert } from '../libs/alert';
 import { TiTrash, TiPencil } from 'react-icons/ti';
 
-const TodoInsert = ({ onInsert, onInsertTodo, selectedTodo, onRemove }) => {
+const TodoInsert = ({
+  onInsert,
+  onInsertTodo,
+  selectedTodo,
+  onRemove,
+  onUpdate,
+}) => {
   const [value, setValue] = useState('');
 
   const onChange = (e) => {
@@ -14,7 +20,10 @@ const TodoInsert = ({ onInsert, onInsertTodo, selectedTodo, onRemove }) => {
   const onSubmit = (e) => {
     if (setValue !== '') {
       e.preventDefault();
-      onInsertTodo(localStorage.setItem('todoList', value));
+      onInsertTodo(
+        localStorage.setItem('todoList', JSON.stringify({ text: value })),
+      );
+      // localStorage.setItem('todoList', value);
       // onInsertTodo(value);
       setValue('');
       onInsert();
@@ -32,7 +41,15 @@ const TodoInsert = ({ onInsert, onInsertTodo, selectedTodo, onRemove }) => {
   return (
     <div className="add-todo">
       <div className="background" onClick={onInsert}></div>
-      <form onSubmit={onSubmit}>
+      <form
+        onSubmit={
+          selectedTodo
+            ? () => {
+                onUpdate(selectedTodo.id, value);
+              }
+            : onSubmit
+        }
+      >
         <input
           placeholder="할 일을 입력해주세요."
           value={value}
@@ -40,7 +57,11 @@ const TodoInsert = ({ onInsert, onInsertTodo, selectedTodo, onRemove }) => {
         />
         {selectedTodo ? (
           <div className="rewrite">
-            <TiPencil />
+            <TiPencil
+              onClick={() => {
+                onUpdate(selectedTodo.id, value);
+              }}
+            />
             <TiTrash
               onClick={() => {
                 onRemove(selectedTodo.id);
