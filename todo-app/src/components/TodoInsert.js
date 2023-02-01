@@ -20,10 +20,9 @@ const TodoInsert = ({
   const onSubmit = (e) => {
     if (setValue !== '') {
       e.preventDefault();
-      onInsertTodo(
-        localStorage.setItem('todoList', JSON.stringify({ text: value })),
-      );
-      // localStorage.setItem('todoList', value);
+      onInsertTodo(localStorage.setItem('todoList', JSON.stringify(value)));
+      // localStorage.setItem('todoList', value);123123
+
       // onInsertTodo(value);
       setValue('');
       onInsert();
